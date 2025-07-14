@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./foodzap.db"
+}
+
+model Condominio{
+  id          Int      @id @default(autoincrement())
+  nome        String
+  endereco    String
+  telefone    String
+  email       String
+  blocos      Bloco[]
+}
+
+model Bloco {
+  id          Int      @id @default(autoincrement())
+  nome        String
+  numeroApartamentos Int
+  condominioId Int
+  condominio Condominio @relation(fields: [condominioId], references: [id])
+  apartamentos Apartamento[]
+
+}
+
+  model Apartamento{
+  id          Int      @id @default(autoincrement())
+  hashCode String? @unique  @default(uuid())
+  numeroApartamento     Int
+  numeroDono   String
+  nomeDono   String
+  blocoId     Int
+  bloco Bloco @relation(fields: [blocoId], references: [id])
+  }
+
