@@ -19,15 +19,15 @@ model User{
   id Int @id @default(autoincrement())
   email String @unique
   password String
-  empresas Empresa[]
+  Pessoas Pessoa[]
 }
 
-model Empresa{
+model Pessoa{
   id Int @id @default(autoincrement())
-  name String
-  endereco String
-  cnpj Int @unique
-  telefone String
+  cpfCnpj String @unique
+  endereco String?
+  telefone String?
   userId Int
   user User @relation(fields: [userId], references: [id])
+
 }

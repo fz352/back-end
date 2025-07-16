@@ -24,7 +24,7 @@ export class AuthController {
         return;
       };
 
-      const token = sign({id: user.id}, "d8d3d5af87f4682b461a012d91cacfdb", {expiresIn: "1d"});
+      const token = sign({id: user.id}, "eb7f198d389ffad9d762a0f2f6cca87c", {expiresIn: "1d"});
 
       const {id} = user;
 
