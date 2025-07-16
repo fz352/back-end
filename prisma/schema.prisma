@@ -14,32 +14,20 @@ datasource db {
   url      = "file:./foodzap.db"
 }
 
-model Condominio{
-  id          Int      @id @default(autoincrement())
-  nome        String
-  endereco    String
-  telefone    String
-  email       String
-  blocos      Bloco[]
+
+model User{
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+  empresas Empresa[]
 }
 
-model Bloco {
-  id          Int      @id @default(autoincrement())
-  nome        String
-  numeroApartamentos Int
-  condominioId Int
-  condominio Condominio @relation(fields: [condominioId], references: [id])
-  apartamentos Apartamento[]
-
+model Empresa{
+  id Int @id @default(autoincrement())
+  name String
+  endereco String
+  cnpj Int @unique
+  telefone String
+  userId Int
+  user User @relation(fields: [userId], references: [id])
 }
-
-  model Apartamento{
-  id          Int      @id @default(autoincrement())
-  hashCode String? @unique  @default(uuid())
-  numeroApartamento     Int
-  numeroDono   String
-  nomeDono   String
-  blocoId     Int
-  bloco Bloco @relation(fields: [blocoId], references: [id])
-  }
-
