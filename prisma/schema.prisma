@@ -32,6 +32,7 @@ model Pessoa{
   cpfCnpj String @unique
   nome String
   password String
+  email String? @unique
   cep String?
   numero String?
   estado String?

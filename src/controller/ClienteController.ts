@@ -17,11 +17,11 @@ export class ClienteController {
   }
 
  async createCliente(req: Request, res: Response): Promise<void> {
-  const { cpfCnpj , nome , password, cep, numero, estado, cidade, bairro, complemento, telefone, tipoPessoa } = req.body;
+  const { cpfCnpj , nome , password, email, telefone} = req.body;
 
   try {
-    
-    if (!cpfCnpj || !nome || !password || !cep || !numero || !estado || !cidade || !bairro || !complemento || !telefone) {
+
+    if (!cpfCnpj || !nome || !password || !telefone || !email) {
       res.status(400).json({ error: 'Todos os campos são obrigatórios' });
       return;
     }
@@ -35,6 +35,15 @@ export class ClienteController {
       return;
     }
 
+      const existingEmail = await prisma.pessoa.findUnique({
+        where: { email }
+      });
+
+      if (existingEmail) {
+        res.status(400).json({ error: 'Email já cadastrado' });
+        return;
+      }
+
     const hashed_password = await hash(password, 8)
 
     const pessoa = await prisma.pessoa.create({
@@ -42,12 +51,7 @@ export class ClienteController {
         cpfCnpj,
         nome,
         password: hashed_password,
-        cep,
-        numero,
-        estado,
-        cidade,
-        bairro,
-        complemento,
+        email,
         telefone,
         tipoPessoa: "CLIENTE",
       },
