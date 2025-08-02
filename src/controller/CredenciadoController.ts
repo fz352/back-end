@@ -5,9 +5,9 @@ import { hash } from "bcryptjs";
 
 
 
-export class EmpresaController {
+export class CredenciadoController {
 
-  async getEmpresa (req: Request, res: Response): Promise <void> {
+  async getCredenciado (req: Request, res: Response): Promise <void> {
       const empresas = await prisma.pessoa.findMany({
         where: { tipoPessoa: "EMPRESA" }
       });
@@ -16,12 +16,12 @@ export class EmpresaController {
       return
   }
 
- async createEmpresa(req: Request, res: Response): Promise<void> {
-  const { cpfCnpj , nome , password, cep, numero, estado, cidade, bairro, complemento, telefone, tipoPessoa } = req.body;
+ async createCredenciado(req: Request, res: Response): Promise<void> {
+  const { cpfCnpj , nome , password, email, cep, endereco, numero, estado, cidade, complemento, telefone } = req.body;
 
   try {
-    
-    if (!cpfCnpj || !nome || !password || !cep || !numero || !estado || !cidade || !bairro || !complemento || !telefone) {
+
+    if (!cpfCnpj || !nome || !password || !cep || !endereco || !numero || !estado || !cidade || !complemento || !telefone || !email) {
       res.status(400).json({ error: 'Todos os campos são obrigatórios' });
       return;
     }
@@ -46,9 +46,10 @@ export class EmpresaController {
         numero,
         estado,
         cidade,
-        bairro,
+        endereco,
         complemento,
         telefone,
+        email,
         tipoPessoa: "EMPRESA",
       },
     });

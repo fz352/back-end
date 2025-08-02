@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import { EntregadorController } from './controller/EntregadorController';
 import { AuthController } from './controller/AuthController';
-import { EmpresaController } from './controller/EmpresaController';
+import { CredenciadoController } from './controller/CredenciadoController';
 import { ClienteController } from './controller/ClienteController';
 import { AuthMiddleware } from './middleware/auth';
 
@@ -9,15 +9,15 @@ import { AuthMiddleware } from './middleware/auth';
 const entregadorcontroller = new EntregadorController();
 const authcontroller = new AuthController();
 const clientecontroller = new ClienteController();
-const empresacontroller = new EmpresaController();
+const credenciadoController = new CredenciadoController();
 
 export const router = Router();
 
 
 router.post('/login', authcontroller.authenticate);
 
-router.post('/createempresa', empresacontroller.createEmpresa);
-router.get('/empresas', empresacontroller.getEmpresa);
+router.post('/createcredenciado', credenciadoController.createCredenciado);
+router.get('/credenciados', credenciadoController.getCredenciado);
 
 router.post('/createcliente', clientecontroller.createCliente);
 router.get('/clientes', clientecontroller.getCliente);

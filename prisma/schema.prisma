@@ -38,6 +38,7 @@ model Pessoa{
   estado String?
   cidade String?
   bairro String?
+  endereco String?
   complemento String?
   telefone String?
   habilitacao String?
