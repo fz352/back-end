@@ -14,11 +14,12 @@ export class EntregadorController {
     }
 
   async createEntregador(req: Request, res: Response): Promise<void> {
-  const { cpfCnpj , nome , password, telefone, habilitacao, tipoPessoa } = req.body;
+  console.log(req.body);
+  const { cpfCnpj , nome , password, telefone, email, habilitacao } = req.body;
 
   try {
-    
-    if (!cpfCnpj || !nome || !password || !telefone || !habilitacao) {
+
+    if (!cpfCnpj || !nome || !password || !telefone || !email ) {
       res.status(400).json({ error: 'Todos os campos são obrigatórios' });
       return;
     }
@@ -39,6 +40,7 @@ export class EntregadorController {
         cpfCnpj,
         nome,
         password: hashed_password,
+        email,
         telefone,
         habilitacao,
         tipoPessoa:"ENTREGADOR",
