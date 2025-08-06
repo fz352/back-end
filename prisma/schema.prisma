@@ -14,11 +14,10 @@ datasource db {
   url      = "file:./foodzap.db"
 }
 
-
-model User{
-  id Int @id @default(autoincrement())
-  email String @unique
-  password String
+model User {
+  id       Int     @id @default(autoincrement())
+  idPessoa Int?
+  pessoa   Pessoa? @relation(fields: [idPessoa], references: [id])
 }
 
 enum TipoPessoa {
@@ -27,21 +26,21 @@ enum TipoPessoa {
   ENTREGADOR
 }
 
-model Pessoa{
-  id Int @id @default(autoincrement())
-  cpfCnpj String @unique
-  nome String
-  password String
-  email String? @unique
-  cep String?
-  numero String?
-  estado String?
-  cidade String?
-  bairro String?
-  endereco String?
+model Pessoa {
+  id          Int         @id @default(autoincrement())
+  cpfCnpj     String      @unique
+  nome        String
+  password    String
+  email       String?     @unique
+  cep         String?
+  numero      String?
+  estado      String?
+  cidade      String?
+  bairro      String?
+  endereco    String?
   complemento String?
-  telefone String?
+  telefone    String?
   habilitacao String?
-  tipoPessoa TipoPessoa?
+  tipoPessoa  TipoPessoa?
+  users       User[]
 }
-
