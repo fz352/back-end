@@ -56,6 +56,8 @@ export class ClienteController {
         tipoPessoa: "CLIENTE",
       },
     });
+
+  await prisma.user.create({data:{idPessoa:pessoa.id}});
     res.status(201).json(pessoa);
   } catch (error) {
     console.error(error);
