@@ -44,7 +44,6 @@ model Pessoa {
   tipoPessoa  TipoPessoa?
   users       User[]
 }
-<<<<<<< HEAD
 
 model Produto{
   id Int @id @default(autoincrement())
@@ -56,6 +55,3 @@ model Produto{
   imageUrl String?
 
 }
-
-=======
->>>>>>> 6f8d55e8b648016cae768a4de127404ab438b94e

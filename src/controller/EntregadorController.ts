@@ -46,7 +46,8 @@ export class EntregadorController {
         tipoPessoa:"ENTREGADOR",
       },
     });
-    await prisma.user.create({data:{idPessoa:pessoa.id}});
+
+    await prisma.user.create({ data: { idPessoa: pessoa.id } });
     res.status(201).json(pessoa);
   } catch (error) {
     console.error(error);
