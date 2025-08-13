@@ -45,3 +45,14 @@ model Pessoa{
   tipoPessoa TipoPessoa?
 }
 
+model Produto{
+  id Int @id @default(autoincrement())
+  nome String
+  preco String
+  categoria String
+  descricao String?
+  disponivel Boolean
+  imageUrl String?
+
+}
+
