@@ -4,6 +4,7 @@ import { AuthController } from './controller/AuthController';
 import { CredenciadoController } from './controller/CredenciadoController';
 import { ClienteController } from './controller/ClienteController';
 import { ProdutoController } from './controller/ProdutoController';
+import { EmailController } from './controller/EmailController';
 import { AuthMiddleware } from './middleware/auth';
 
 
@@ -12,6 +13,7 @@ const authcontroller = new AuthController();
 const clientecontroller = new ClienteController();
 const credenciadocontroller = new CredenciadoController();
 const produtocontroller = new ProdutoController();
+const emailcontroller = new EmailController();
 
 export const router = Router();
 
@@ -30,6 +32,10 @@ router.get('/entregadores', entregadorcontroller.getEntregador);
 
 router.post('/createproduto', produtocontroller.createProduto);
 router.get('/produtos', produtocontroller.getProduto);
+
+router.post('/sendemail', emailcontroller.sendEmail)
+
+
 
 
 
