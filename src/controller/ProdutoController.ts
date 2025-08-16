@@ -13,7 +13,7 @@ export class ProdutoController {
       const { nome, preco, categoria, descricao, disponivel, imageUrl } = req.body;     
         try {
 
-            if (!nome || !preco|| !categoria || !descricao || !disponivel || !imageUrl) {
+            if (!nome || !preco|| !categoria || !descricao  || !imageUrl) {
             res.status(400).json({ error: 'Todos os campos são obrigatórios' });
             return;
             }
